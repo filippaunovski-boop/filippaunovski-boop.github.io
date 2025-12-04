@@ -74,26 +74,28 @@ body {
 
 /* --- CATEGORY HEADERS (.png) --- */
 .section-header {
-  display:block;
-  width:140%;
-  max-width:1400px;
-  margin:5px auto 10px auto; 
-  pointer-events:none;
-  user-select:none;
-}
+        display: block;
+        width: 100%;
+        max-width: 1400px;
+        height: 300px;
+        object-fit: cover;  
+        margin: 5px auto 10px auto;
+        pointer-events: none;
+        user-select: none;
+      }
 
-/* --- GRID 2x3 balanced spacing --- */
+/* --- GRID 2x3 fully responsive --- */
 .grid {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:50px 50px; 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* responsive wrapping */
+  gap: 50px 50px; /* keep spacing */
   width:90%;
   margin:-10px auto 15px auto;
 }
 
 /* --- THUMBNAILS (strong glow, less feather) --- */
 .thumb {
-  width:110%;
+  width:100%; /* fill grid cell */
   aspect-ratio:16/9;
   border-radius:8px;
   overflow:hidden;
@@ -123,13 +125,13 @@ body {
 }
 .bottom-sign.in-view { opacity:1; transform:translateY(0); }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE ADJUSTMENTS --- */
 @media (max-width:768px) {
   .video-container { width:95%; }
   .section-header { width:95%; }
-  .grid {
-    grid-template-columns:1fr; /* stack videos vertically */
-    gap:30px 0; /* slightly smaller vertical spacing */
+  .grid { 
+    grid-template-columns:1fr; /* stack vertically on small screens */
+    gap:30px 0;
     width:95%;
   }
   .thumb { width:100%; }

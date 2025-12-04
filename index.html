@@ -9,11 +9,10 @@ body {
   margin:0;
   background:#000;
   font-family:Arial,sans-serif;
-  overflow:hidden; /* prevent scroll until logo animation ends */
+  overflow:hidden;
   user-select:none;
 }
 
-/* --- FULLSCREEN LOGO OVERLAY --- */
 .logo-overlay {
   position:fixed;
   top:0; left:0; width:100%; height:100%;
@@ -33,25 +32,23 @@ body {
   100% {opacity:0; transform:scale(1);}
 }
 
-/* --- MAIN CONTENT --- */
 .main-content {
   display:flex;
   flex-direction:column;
   align-items:center;
   overflow-x:hidden;
   padding-top:40px;
-  opacity:0;               
+  opacity:0;
   transition:opacity .5s ease;
 }
 
-/* --- PORTFOLIO VIDEO --- */
 .video-container {
   width:80%;
   max-width:1536px;
   aspect-ratio:16/9;
   border-radius:6px;
   overflow:hidden;
-  opacity:0;               
+  opacity:0;
   transition: opacity 1s ease;
   margin-bottom:30px;
   box-shadow:
@@ -61,41 +58,37 @@ body {
 }
 .video-container iframe { width:100%; height:100%; border:none; }
 
-/* --- SECTIONS (tightened spacing) --- */
 .section {
   width:100%;
   max-width:1400px;
   opacity:0;
   transform:translateY(40px);
   transition:opacity .7s ease, transform .7s ease;
-  margin-bottom:15px; 
+  margin-bottom:15px;
 }
 .section.in-view { opacity:1; transform:translateY(0); }
 
-/* --- CATEGORY HEADERS (.png) --- */
 .section-header {
-        display: block;
-        width: 100%;
-        max-width: 1400px;
-        height: 300px;
-        object-fit: cover;  
-        margin: 5px auto 10px auto;
-        pointer-events: none;
-        user-select: none;
-      }
+  display: block;
+  width: 100%;
+  max-width: 1400px;
+  height: 300px;
+  object-fit: cover;
+  margin: 5px auto 10px auto;
+  pointer-events: none;
+  user-select: none;
+}
 
-/* --- GRID 2x3 fully responsive --- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* responsive wrapping */
-  gap: 50px 50px; /* keep spacing */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 50px 50px;
   width:90%;
   margin:-10px auto 15px auto;
 }
 
-/* --- THUMBNAILS (strong glow, less feather) --- */
 .thumb {
-  width:100%; /* fill grid cell */
+  width:100%;
   aspect-ratio:16/9;
   border-radius:8px;
   overflow:hidden;
@@ -110,10 +103,9 @@ body {
 .section.in-view .thumb { opacity:1; transform:translateY(0); }
 .thumb iframe { width:100%; height:100%; border:none; }
 
-/* --- BOTTOM SIGN (bigger) --- */
 .bottom-sign {
-  width:70%;  
-  max-width:900px;  
+  width:70%;
+  max-width:900px;
   opacity:0;
   transform:translateY(20px);
   transition:.8s ease;
@@ -125,12 +117,11 @@ body {
 }
 .bottom-sign.in-view { opacity:1; transform:translateY(0); }
 
-/* --- RESPONSIVE ADJUSTMENTS --- */
 @media (max-width:768px) {
   .video-container { width:95%; }
   .section-header { width:95%; }
   .grid { 
-    grid-template-columns:1fr; /* stack vertically on small screens */
+    grid-template-columns:1fr;
     gap:30px 0;
     width:95%;
   }
@@ -141,29 +132,27 @@ body {
 </head>
 <body oncontextmenu="return false;">
 
-<!-- FULLSCREEN LOGO -->
 <div class="logo-overlay">
   <img src="logo.svg" alt="logo">
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="main-content">
 
-  <!-- PORTFOLIO VIDEO -->
   <div class="video-container">
-    <iframe src="https://player.vimeo.com/video/1140949021" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/1140949021" 
+      allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
   </div>
 
   <!-- SECTION A -->
   <div class="section">
     <img src="mot.png" class="section-header">
     <div class="grid">
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1138054770"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141698264"></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1103151848"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1103151953"></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141697510"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141697913"></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1138054770" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141698264" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1103151848" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1103151953" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141697510" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141697913" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
     </div>
   </div>
 
@@ -171,12 +160,12 @@ body {
   <div class="section">
     <img src="cor.png" class="section-header">
     <div class="grid">
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141692729"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141692292"></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141692160"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141692551"></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141692361"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141692474"></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141692729" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141692292" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141692160" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141692551" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141692361" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141692474" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
     </div>
   </div>
 
@@ -184,12 +173,12 @@ body {
   <div class="section">
     <img src="vid.png" class="section-header">
     <div class="grid">
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141728709"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141698755"></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141698391"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141698269"></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141698487"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141697716"></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141728709" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141698755" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141698391" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141698269" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141698487" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141697716" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
     </div>
   </div>
 
@@ -197,38 +186,34 @@ body {
   <div class="section">
     <img src="exp.png" class="section-header">
     <div class="grid">
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141555865"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141555909"></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141558482"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141558472"></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141555887"></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141555937"></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141555865" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141555909" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141558482" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141558472" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141555887" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141555937" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
     </div>
   </div>
 
-  <!-- BOTTOM SIGN -->
   <img src="sign2.png" class="bottom-sign" id="sign">
 
 </div>
 
 <script>
-// Force scroll to top on page load/refresh
 window.onbeforeunload = function () { window.scrollTo(0,0); };
 
-// Logo -> Portfolio Timeline
 const logoOverlay = document.querySelector('.logo-overlay');
 const mainContent = document.querySelector('.main-content');
 const videoContainer = document.querySelector('.video-container');
 
 logoOverlay.querySelector('img').addEventListener('animationend', () => {
   logoOverlay.style.display='none';
-  mainContent.style.opacity='1';      
-  videoContainer.style.opacity='1';   
+  mainContent.style.opacity='1';
+  videoContainer.style.opacity='1';
   document.body.style.overflowY='auto';
-  window.scrollTo(0,0);              
+  window.scrollTo(0,0);
 });
 
-// Scroll reveal
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("in-view"); });
 }, { threshold:0.2 });

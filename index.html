@@ -4,220 +4,324 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Filip's Showreel</title>
+
 <style>
-body {
+body{
   margin:0;
   background:#000;
-  font-family:Arial,sans-serif;
+  font-family:Montserrat, Arial, sans-serif;
   overflow:hidden;
   user-select:none;
+  color:#fff;
 }
 
-.logo-overlay {
+/* ===== BACKGROUND VIDEO ===== */
+#bg-video{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:-3;
+  pointer-events:none;
+}
+
+/* ===== DARKER CENTER GRADIENT ===== */
+#gradient-overlay{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.25) 45%,
+    rgba(0,0,0,0.10) 70%,
+    rgba(0,0,0,0) 100%
+  );
+  z-index:-2;
+  pointer-events:none;
+}
+
+/* ===== LOGO INTRO ===== */
+.logo-overlay{
   position:fixed;
   top:0; left:0; width:100%; height:100%;
-  display:flex; justify-content:center; align-items:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   background:#000;
   z-index:1000;
 }
-.logo-overlay img {
-  width:350px;
+.logo-overlay img{
+  width:360px;
   opacity:0;
-  animation: logoFade 2.5s ease forwards;
+  animation:logoFade 2.2s ease forwards;
 }
-@keyframes logoFade {
-  0% {opacity:0; transform:scale(3);}
-  40% {opacity:1; transform:scale(1);}
-  80% {opacity:1; transform:scale(1);}
-  100% {opacity:0; transform:scale(1);}
+@keyframes logoFade{
+  0%{opacity:0; transform:scale(3);}
+  40%{opacity:1; transform:scale(1);}
+  80%{opacity:1; transform:scale(1);}
+  100%{opacity:0; transform:scale(1);}
 }
 
-.main-content {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  overflow-x:hidden;
-  padding-top:40px;
+/* ===== MAIN CONTENT ===== */
+.main-content{
   opacity:0;
+  padding-top:40px;
   transition:opacity .5s ease;
 }
 
-.video-container {
-  width:80%;
-  max-width:1536px;
+/* ===== MAIN PORTFOLIO VIDEO (KEEPED AS PROMINENT) ===== */
+.main-video{
+  width:100%;                 /* SHOWREEL stays full-width (within its max) */
+  max-width:1600px;
   aspect-ratio:16/9;
-  border-radius:6px;
+  margin:0 auto 60px auto;
+  border-radius:10px;
   overflow:hidden;
   opacity:0;
-  transition: opacity 1s ease;
-  margin-bottom:30px;
+  transition:opacity 1s ease;
   box-shadow:
-    0 0 28px rgba(255,221,51,.8),
-    0 0 50px rgba(255,221,51,.6),
-    0 0 100px rgba(255,221,51,.3);
+    0 0 25px rgba(255,255,255,0.9),
+    0 0 55px rgba(255,255,255,0.5),
+    0 0 100px rgba(255,255,255,0.2);
+  animation:pulseGlow 2s infinite ease-in-out;
 }
-.video-container iframe { width:100%; height:100%; border:none; }
+@keyframes pulseGlow{
+  0%{ box-shadow:0 0 25px rgba(255,255,255,0.9); }
+  50%{ box-shadow:0 0 45px rgba(255,255,255,1); }
+  100%{ box-shadow:0 0 25px rgba(255,255,255,0.9); }
+}
+.main-video iframe{ width:100%; height:100%; border:none; }
 
-.section {
-  width:100%;
-  max-width:1400px;
+/* ===== CATEGORY HEADERS ===== */
+.category-title{
+  text-align:center;
+  font-size:44px;
+  margin-bottom:10px;
   opacity:0;
-  transform:translateY(40px);
-  transition:opacity .7s ease, transform .7s ease;
-  margin-bottom:15px;
+  transform:translateY(30px);
+  transition:.6s ease;
 }
-.section.in-view { opacity:1; transform:translateY(0); }
-
-.section-header {
-  display: block;
-  width: 100%;
-  max-width: 1400px;
-  height: 300px;
-  object-fit: cover;
-  margin: 5px auto 10px auto;
-  pointer-events: none;
-  user-select: none;
+.category-title span.light{
+  font-weight:300;
+}
+.category-title span.bold{
+  font-weight:800;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 50px 50px;
-  width:90%;
-  margin:-10px auto 15px auto;
+/* ===== GRID 2×3 (SCALED DOWN & CENTERED) ===== */
+/* changed: grid container is narrower so videos don't stretch edge-to-edge */
+.grid{
+  width:75%;                    /* <-- narrowed from 90% to 75% */
+  max-width:1100px;             /* keeps a comfortable maximum */
+  margin:20px auto 60px auto;   /* centered */
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:40px;
 }
 
-.thumb {
-  width:100%;
+.thumb{
   aspect-ratio:16/9;
-  border-radius:8px;
+  width:100%;
   overflow:hidden;
+  border-radius:10px;
   opacity:0;
   transform:translateY(20px);
-  transition: opacity .7s ease, transform .7s ease;
+  transition:opacity .6s ease, transform .6s ease, box-shadow .3s ease, transform .3s ease;
   box-shadow:
-    0 0 16px rgba(255,221,51,.75), 
-    0 0 28px rgba(255,221,51,.55),
-    0 0 50px rgba(255,221,51,.35);
+    0 0 16px rgba(255,255,255,0.2),
+    0 0 30px rgba(255,255,255,0.15);
 }
-.section.in-view .thumb { opacity:1; transform:translateY(0); }
-.thumb iframe { width:100%; height:100%; border:none; }
+.thumb:hover{
+  box-shadow:
+    0 0 18px rgba(255,255,255,0.6),
+    0 0 40px rgba(255,255,255,0.4),
+    0 0 60px rgba(255,255,255,0.2);
+  transform:translateY(-4px);
+}
+.thumb iframe{ width:100%; height:100%; border:none; }
 
-.bottom-sign {
-  width:70%;
-  max-width:900px;
+/* ===== BOTTOM CONTACT ===== */
+.bottom-contact{
+  text-align:center;
+  margin:40px auto;
   opacity:0;
   transform:translateY(20px);
   transition:.8s ease;
-  margin-bottom:60px;
-  pointer-events:none;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
+  user-select:text; /* UNLOCK COPY */
 }
-.bottom-sign.in-view { opacity:1; transform:translateY(0); }
+.bottom-contact .line1{
+  font-size:20px;
+  font-weight:300;
+}
+.bottom-contact .line2{
+  font-size:28px;   /* MADE BIGGER */
+  font-weight:800;
+  margin-bottom:10px;
+}
+.copy-btn{
+  margin-top:10px;
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
+  background:#fff;
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+}
 
-@media (max-width:768px) {
-  .video-container { width:95%; }
-  .section-header { width:95%; }
-  .grid { 
+/* ===== BOTTOM LOGO ===== */
+.bottom-logo{
+  width:260px;  /* MADE BIGGER */
+  display:block;
+  margin:20px auto 80px auto;
+  opacity:0;
+  transform:translateY(20px);
+  transition:.8s ease;
+}
+
+@media(max-width:1024px){
+  /* keep grid a bit wider on medium screens */
+  .grid{ width:86%; max-width:940px; }
+}
+@media(max-width:768px){
+  .main-video{ width:95%; }
+  .grid{
     grid-template-columns:1fr;
-    gap:30px 0;
-    width:95%;
+    gap:30px;
+    width:90%;
   }
-  .thumb { width:100%; }
-  .bottom-sign { width:90%; }
+  .category-title{ font-size:32px; }
+  .bottom-contact .line2{ font-size:25px; }
 }
 </style>
 </head>
-<body oncontextmenu="return false;">
 
+<body oncontextmenu="return false">
+
+<!-- ===== BACKGROUND VIDEO ===== -->
+<video id="bg-video" src="background.mp4" autoplay muted loop playsinline></video>
+<div id="gradient-overlay"></div>
+
+<!-- ===== LOGO INTRO ===== -->
 <div class="logo-overlay">
   <img src="logo.svg" alt="logo">
 </div>
 
 <div class="main-content">
 
-  <div class="video-container">
-    <iframe src="https://player.vimeo.com/video/1140949021" 
-      allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  <!-- ===== MAIN PORTFOLIO VIDEO ===== -->
+  <div class="main-video" id="mainVideo">
+    <iframe src="https://player.vimeo.com/video/1140949021?autoplay=0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen></iframe>
   </div>
 
-  <!-- SECTION A -->
-  <div class="section">
-    <img src="mot.png" class="section-header">
+  <!-- ===== CATEGORIES ===== -->
+  <div class="category-block">
+    <div class="category-title"><span class="light">motion</span> <span class="bold">graphics</span></div>
     <div class="grid">
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1138054770" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141698264" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1103151848" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1103151953" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141697510" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141697913" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1138054770" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141698264" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1103151848" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1103151953" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141697510" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141697913" allowfullscreen></iframe></div>
     </div>
   </div>
 
-  <!-- SECTION B -->
-  <div class="section">
-    <img src="cor.png" class="section-header">
+  <div class="category-block">
+    <div class="category-title"><span class="light">corporate</span> <span class="bold">videos</span></div>
     <div class="grid">
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141692729" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141692292" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141692160" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141692551" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141692361" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141692474" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141692729" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141692292" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141692160" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141692551" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141692361" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141692474" allowfullscreen></iframe></div>
     </div>
   </div>
 
-  <!-- SECTION C -->
-  <div class="section">
-    <img src="vid.png" class="section-header">
+  <div class="category-block">
+    <div class="category-title"><span class="light">video</span> <span class="bold">editing</span></div>
     <div class="grid">
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141728709" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141698755" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141698391" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141698269" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141698487" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141697716" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141728709" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141698755" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141698391" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141698269" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141698487" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141697716" allowfullscreen></iframe></div>
     </div>
   </div>
 
-  <!-- SECTION D -->
-  <div class="section">
-    <img src="exp.png" class="section-header">
+  <div class="category-block">
+    <div class="category-title"><span class="light">explainer</span> <span class="bold">videos</span></div>
     <div class="grid">
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141555865" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141555909" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141558482" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141558472" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:end;"><iframe src="https://player.vimeo.com/video/1141555887" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="thumb" style="justify-self:start;"><iframe src="https://player.vimeo.com/video/1141555937" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141555865" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141555909" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141558482" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141558472" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141555887" allowfullscreen></iframe></div>
+      <div class="thumb"><iframe src="https://player.vimeo.com/video/1141555937" allowfullscreen></iframe></div>
     </div>
   </div>
 
-  <img src="sign2.png" class="bottom-sign" id="sign">
+  <!-- ===== CONTACT ===== -->
+  <div class="bottom-contact">
+    <div class="line1">for custom video requests, contact me at</div>
+    <div class="line2" id="email">filip.paunovski@gmail.com</div>
+    <button class="copy-btn" onclick="copyEmail()">Copy email</button>
+  </div>
+
+  <img src="logo.svg" class="bottom-logo">
 
 </div>
 
 <script>
-window.onbeforeunload = function () { window.scrollTo(0,0); };
+window.onbeforeunload = () => window.scrollTo(0,0);
 
 const logoOverlay = document.querySelector('.logo-overlay');
 const mainContent = document.querySelector('.main-content');
-const videoContainer = document.querySelector('.video-container');
+const mainVideo = document.querySelector('.main-video');
 
 logoOverlay.querySelector('img').addEventListener('animationend', () => {
   logoOverlay.style.display='none';
   mainContent.style.opacity='1';
-  videoContainer.style.opacity='1';
+  mainVideo.style.opacity='1';
   document.body.style.overflowY='auto';
   window.scrollTo(0,0);
 });
 
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("in-view"); });
-}, { threshold:0.2 });
-document.querySelectorAll(".section, .bottom-sign").forEach(el => io.observe(el));
+/* SCROLL REVEALS */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity="1";
+      e.target.style.transform="translateY(0)";
+    }
+  });
+},{threshold:0.2});
+
+document.querySelectorAll('.category-title, .thumb, .bottom-contact, .bottom-logo')
+  .forEach(el=>observer.observe(el));
+
+/* MOBILE CLICK TO PLAY */
+if(window.innerWidth <= 768){
+  document.querySelectorAll('.thumb').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      const iframe = t.querySelector('iframe');
+      iframe.contentWindow.postMessage({ method:'play' }, '*');
+    });
+  });
+}
+
+/* COPY EMAIL */
+function copyEmail(){
+  const email = document.getElementById("email").innerText;
+  navigator.clipboard.writeText(email);
+  alert("Email copied!");
+}
 </script>
+
 </body>
 </html>
